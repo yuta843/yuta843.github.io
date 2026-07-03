@@ -34,12 +34,13 @@
       .outline-main:after{content:"";position:absolute;left:-.368cqw;top:12.647cqw;width:2.547cqw;height:2.206cqw;background:var(--ink);clip-path:polygon(50% 100%,100% 0,0 0)}
       .brand{animation:brand-track 3.395036s linear infinite}
       .black-main{animation:main-square-track 3.395036s linear infinite}
-      .rhythm i,.footer-squares i{animation-duration:3.395036s;animation-timing-function:linear;animation-iteration-count:infinite}
-      .rhythm i:nth-child(1){animation-name:rhythm-up-36}.rhythm i:nth-child(2){animation-name:rhythm-down-29}
-      .rhythm i:nth-child(3){animation-name:rhythm-up-35-401}.rhythm i:nth-child(4){animation-name:rhythm-down-29-509}
-      .rhythm i:nth-child(5){animation-name:rhythm-up-35-629}.rhythm i:nth-child(6){animation-name:rhythm-down-29-733}
-      .rhythm i:nth-child(7){animation-name:rhythm-up-36-860}.rhythm i:nth-child(8){animation-name:rhythm-down-29-957}
-      .rhythm i:nth-child(9){animation-name:rhythm-sweep}.rhythm i:nth-child(10){animation:none}
+      .rhythm i{animation-duration:1.8s;animation-timing-function:cubic-bezier(.45,0,.55,1);animation-iteration-count:infinite;animation-direction:alternate;animation-fill-mode:both}
+      .footer-squares i{animation-duration:3.395036s;animation-timing-function:linear;animation-iteration-count:infinite}
+      .rhythm i:nth-child(1){animation-name:rhythm-smooth-up;animation-delay:0s}.rhythm i:nth-child(2){animation-name:rhythm-smooth-down;animation-delay:.1s}
+      .rhythm i:nth-child(3){animation-name:rhythm-smooth-up;animation-delay:.2s}.rhythm i:nth-child(4){animation-name:rhythm-smooth-down;animation-delay:.3s}
+      .rhythm i:nth-child(5){animation-name:rhythm-smooth-up;animation-delay:.4s}.rhythm i:nth-child(6){animation-name:rhythm-smooth-down;animation-delay:.5s}
+      .rhythm i:nth-child(7){animation-name:rhythm-smooth-up;animation-delay:.6s}.rhythm i:nth-child(8){animation-name:rhythm-smooth-down;animation-delay:.7s}
+      .rhythm i:nth-child(9){animation-name:rhythm-smooth-sweep;animation-duration:2.8s;animation-delay:.8s}.rhythm i:nth-child(10){animation:none}
       .footer-squares i:nth-child(1){animation-name:footer-jump-1}.footer-squares i:nth-child(2){animation-name:footer-jump-2;animation-delay:0s}
       .footer-squares i:nth-child(3){animation-name:footer-jump-3}.footer-squares i:nth-child(4){animation-name:footer-jump-4;animation-delay:0s}
     }
@@ -54,6 +55,9 @@
     @keyframes rhythm-up-36-860{0%{transform:translateY(0)}25.331%{transform:translateY(-2.647cqw)}100%{transform:translateY(-2.647cqw)}}
     @keyframes rhythm-down-29-957{0%{transform:translateY(0)}28.188%{transform:translateY(2.132cqw)}100%{transform:translateY(2.132cqw)}}
     @keyframes rhythm-sweep{0%,35.808%{transform:translateX(0)}54.387%{transform:translateX(-28.676cqw)}71.047%,100%{transform:translateX(3.088cqw)}}
+    @keyframes rhythm-smooth-up{from{transform:translateY(0)}to{transform:translateY(-2.647cqw)}}
+    @keyframes rhythm-smooth-down{from{transform:translateY(0)}to{transform:translateY(2.132cqw)}}
+    @keyframes rhythm-smooth-sweep{from{transform:translateX(0)}to{transform:translateX(-28.676cqw)}}
     @keyframes footer-jump-1{0%{transform:translateY(0)}4.124%{transform:translateY(-6.471cqw)}17.997%,100%{transform:translateY(-.441cqw)}}
     @keyframes footer-jump-2{0%{transform:translateY(0)}8.571%{transform:translateY(-4.485cqw)}22.386%,100%{transform:translateY(-.441cqw)}}
     @keyframes footer-jump-3{0%{transform:translateY(0)}13.108%{transform:translateY(-8.75cqw)}25.42%,100%{transform:translateY(-.441cqw)}}
