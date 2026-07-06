@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="Penginkun personal website">
-  <title>Penginkun Site</title>
+  <meta name="description" content="Home in Pengin.net">
+  <title>home.penginkun net</title>
   <style>
     :root { --ink: #050505; --paper: #fff; }
     * { box-sizing: border-box; }
@@ -28,6 +28,24 @@
     .square-large { left: 72%; top: 40%; width: 18.5%; aspect-ratio: 1; background: var(--ink); }
     .triangle-large { left: 54%; top: 34%; width: 14%; aspect-ratio: 1; background: var(--ink); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
     footer { position: absolute; inset: auto 0 0; display: flex; height: 6.5%; align-items: center; padding-left: 3.4%; background: var(--ink); color: var(--paper); font-size: clamp(7px, .75vw, 10px); letter-spacing: .15em; }
+    .masthead { animation: header-in .55s ease-out 0s 1 both; }
+    .kicker { animation: copy-in .55s ease-out .14s 1 both; }
+    h1 { animation: title-in .75s cubic-bezier(.2,.8,.2,1) .2s 1 both; }
+    .enter { animation: copy-in .55s ease-out .48s 1 both; }
+    .outline-large { animation: outline-in .7s ease-out .28s 1 both; }
+    .square-large { animation: square-in .65s cubic-bezier(.2,.8,.2,1) .42s 1 both; }
+    .triangle-large { animation: triangle-in .6s ease-out .56s 1 both; }
+    footer { animation: footer-in .5s ease-out .7s 1 both; }
+    @keyframes header-in { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes copy-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes title-in { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes outline-in { from { opacity: 0; transform: scale(.82); } to { opacity: 1; transform: scale(1); } }
+    @keyframes square-in { from { opacity: 0; transform: translate(24px, 20px) scale(.88); } to { opacity: 1; transform: translate(0, 0) scale(1); } }
+    @keyframes triangle-in { from { opacity: 0; transform: translateY(-22px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes footer-in { from { opacity: 0; transform: translateY(100%); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; }
+    }
     @media (max-width: 700px) {
       body { padding: 12px; }
       .page { width: min(100%, 390px); min-height: 0; aspect-ratio: 354 / 760; }

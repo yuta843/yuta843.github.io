@@ -21,14 +21,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Verify static site has no animation
+      - name: Verify animations run once
         shell: bash
         run: |
           set -euo pipefail
           test -f index.html
           test -f CNAME
-          if grep -Eiq '(@keyframes|animation(-name)?[[:space:]]*:|transition[[:space:]]*:)' index.html; then
-            echo "Animation or transition CSS was found in index.html."
+          grep -Eq '@keyframes' index.html
+          grep -Eq 'prefers-reduced-motion' index.html
+          if grep -Eiq 'infinite|animation-iteration-count[[:space:]]*:[[:space:]]*([2-9]|[1-9][0-9]+)' index.html; then
+            echo "A repeating animation was found in index.html."
             exit 1
           fi
 
