@@ -40,6 +40,7 @@
     .square-large { left: 72%; top: 40%; width: 18.5%; aspect-ratio: 1; background: var(--ink); }
     .triangle-large { left: 54%; top: 34%; width: 14%; aspect-ratio: 1; background: var(--ink); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
     footer { position: absolute; inset: auto 0 0; display: flex; height: 6.5%; align-items: center; padding-left: 3.4%; background: var(--ink); color: var(--paper); font-size: clamp(7px, .75vw, 10px); letter-spacing: .15em; }
+    .legal { margin-left: auto; padding-right: 3.4%; text-align: right; font-size: clamp(5px, .55vw, 8px); font-weight: 400; line-height: 1.45; letter-spacing: .06em; }
     .masthead { animation: header-in .55s ease-out 0s 1 both; }
     .kicker { animation: copy-in .55s ease-out .14s 1 both; }
     h1 { animation: title-in .75s cubic-bezier(.2,.8,.2,1) .2s 1 both; }
@@ -72,7 +73,8 @@
       .enter { left: 4.5%; top: 68%; height: 7%; }
       .enter a { width: 190px; font-size: 10px; }
       .enter-mark { width: 54px; margin-left: 16px; }
-      footer { height: 7%; padding-left: 4.5%; font-size: 7px; }
+      footer { height: 9%; padding-left: 4.5%; font-size: 6px; }
+      .legal { max-width: 62%; padding-right: 4.5%; font-size: 5px; line-height: 1.4; }
     }
   </style>
 </head>
@@ -84,7 +86,7 @@
     <div id="geometry" aria-label="Abstract monochrome geometric composition">
       <i class="shape outline-large"></i><i class="shape square-large"></i><i class="shape triangle-large"></i>
     </div>
-    <footer>PENGINKUN.NET / PERSONAL SITE</footer>
+    <footer><span>PENGINKUN.NET / PERSONAL SITE</span><small class="legal">© 2026 PenginKun. All rights reserved.<br>Made with ❤️ and GitHub Pages.</small></footer>
   </main>
 </body>
 </html>
