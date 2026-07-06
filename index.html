@@ -24,6 +24,7 @@
     html, body { margin: 0; min-height: 100%; background: var(--paper); color: var(--ink); }
     body { min-height: 100svh; padding: 18px; font-family: Arial, Helvetica, sans-serif; }
     .page { position: relative; width: min(100%, 1360px); aspect-ratio: 1360 / 944; min-height: 660px; margin: auto; overflow: hidden; border: 1px solid var(--ink); background: var(--paper); }
+    .page::after { position: absolute; z-index: 50; inset: 0; background: var(--ink); content: ""; pointer-events: none; transform: scaleX(0); transform-origin: left center; }
     .masthead { position: absolute; inset: 4.1% 3.3% auto; height: 7%; border-bottom: 1px solid var(--ink); }
     .brand, .domain { position: absolute; top: 0; margin: 0; font-weight: 700; }
     .brand { left: 0; font-size: clamp(17px, 1.9vw, 28px); }
@@ -32,7 +33,8 @@
     .kicker { margin: 0 0 7%; font-size: clamp(7px, .75vw, 11px); letter-spacing: .2em; color: #666; }
     h1 { margin: 0; font-size: clamp(64px, 8.1vw, 116px); line-height: .86; letter-spacing: -.07em; }
     .enter { position: absolute; left: 3.8%; top: 63%; display: flex; height: 7%; }
-    .enter a { display: grid; width: clamp(160px, 17vw, 230px); place-items: center; border: 1px solid var(--ink); color: inherit; font-size: clamp(9px, .9vw, 13px); letter-spacing: .12em; text-decoration: none; }
+    .enter a { display: grid; width: clamp(160px, 17vw, 230px); place-items: center; border: 1px solid var(--ink); color: inherit; font-size: clamp(9px, .9vw, 13px); letter-spacing: .12em; text-decoration: none; transition: background-color .18s ease, color .18s ease; }
+    .enter a:hover, .enter a:focus-visible { background: var(--ink); color: var(--paper); outline: none; }
     .enter-mark { display: grid; width: clamp(44px, 4.6vw, 62px); margin-left: 1.7vw; place-items: center; background: var(--ink); }
     .enter-mark::after { width: 0; height: 0; border-right: 7px solid transparent; border-bottom: 12px solid var(--paper); border-left: 7px solid transparent; content: ""; }
     .shape { position: absolute; }
@@ -56,6 +58,15 @@
     @keyframes square-in { from { opacity: 0; transform: translate(24px, 20px) scale(.88); } to { opacity: 1; transform: translate(0, 0) scale(1); } }
     @keyframes triangle-in { from { opacity: 0; transform: translateY(-22px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes footer-in { from { opacity: 0; transform: translateY(100%); } to { opacity: 1; transform: translateY(0); } }
+    .page.is-leaving { pointer-events: none; }
+    .page.is-leaving::after { animation: wipe-to-black .72s cubic-bezier(.76,0,.24,1) 0s 1 both; }
+    .page.is-leaving h1 { animation: title-exit .48s ease-in 0s 1 both; }
+    .page.is-leaving .enter { z-index: 51; animation: enter-pulse .55s cubic-bezier(.2,.8,.2,1) 0s 1 both; }
+    .page.is-leaving .outline-large, .page.is-leaving .square-large, .page.is-leaving .triangle-large { animation: geometry-exit .5s ease-in 0s 1 both; }
+    @keyframes wipe-to-black { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+    @keyframes title-exit { to { opacity: 0; transform: translateX(38px); } }
+    @keyframes enter-pulse { 45% { transform: scale(1.08); filter: invert(1); } 100% { opacity: 0; transform: scale(.94); } }
+    @keyframes geometry-exit { to { opacity: 0; transform: scale(.65) rotate(12deg); } }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; }
     }
@@ -82,11 +93,30 @@
   <main class="page">
     <header class="masthead"><p class="brand">Pengin/</p><p class="domain">.website</p></header>
     <section class="intro"><p class="kicker">PERSONAL WEB SPACE</p><h1>penginkun<br>site</h1></section>
-    <div class="enter"><a href="#geometry">ENTER SITE</a><span class="enter-mark" aria-hidden="true"></span></div>
+    <div class="enter"><a href="https://penginkun.net" id="enter-site">ENTER SITE</a><span class="enter-mark" aria-hidden="true"></span></div>
     <div id="geometry" aria-label="Abstract monochrome geometric composition">
       <i class="shape outline-large"></i><i class="shape square-large"></i><i class="shape triangle-large"></i>
     </div>
     <footer><span>PENGINKUN.NET / PERSONAL SITE</span><small class="legal">© 2026 PenginKun. All rights reserved.<br>Made with ❤️ and GitHub Pages.</small></footer>
   </main>
+  <script>
+    const page = document.querySelector('.page');
+    const enterSite = document.querySelector('#enter-site');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    enterSite.addEventListener('click', (event) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      if (page.classList.contains('is-leaving')) return;
+      if (reduceMotion.matches) {
+        window.location.assign(enterSite.href);
+        return;
+      }
+      page.classList.add('is-leaving');
+      window.setTimeout(() => window.location.assign(enterSite.href), 720);
+    });
+
+    window.addEventListener('pageshow', () => page.classList.remove('is-leaving'));
+  </script>
 </body>
 </html>
